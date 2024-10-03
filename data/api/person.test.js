@@ -1,4 +1,5 @@
 const db = require('../db-config');
+const server = require('../../server');
 
 const request = require('supertest');
 const Person = require('./person');
@@ -12,6 +13,10 @@ beforeAll(async () => {
   })
   afterAll(async () => {
     await db.destroy();
+  })
+
+  it('correct env var', () => {
+    expect(process.env.NODE_ENV).toBe('testing')
   })
 
   describe('getAll()', () => {
