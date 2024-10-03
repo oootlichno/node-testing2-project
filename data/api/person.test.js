@@ -107,6 +107,8 @@ describe('insert()', () => {
         await Person.remove(1);
         const persons = await db('person');
         expect(persons).toHaveLength(1);
+        const [id] = await db('person').insert({ first_name: 'Jack', last_name:'Kan' })
+        await request(server).delete('/person' + id)
       });
     }); 
 
